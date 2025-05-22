@@ -14,18 +14,29 @@
   color: var(--text-light);
   background-color: var(--primary-dark);
 }
+.container-video {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
 
 .hero-video {
-  width: 100%;
+  width: 60%;
   margin-bottom: 3rem;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-video video {
   width: 100%;
   display: block;
+  margin: 0 auto;
 }
 
 .main-title {
@@ -200,4 +211,10 @@ section {
   font-size: 0.95rem;
   color: var(--text-light); /* Cambiado de #172a45 a un color claro */
   font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .hero-video video {
+    max-width: 100%;
+  }
 }

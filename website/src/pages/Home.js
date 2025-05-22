@@ -58,11 +58,19 @@ export default function Home() {
 
             <h1 className="main-title">5ta, 6ta & 7ma Generación de Tecnología Móvil</h1>
 
-            <div className="hero-video">
-                <video controls autoPlay muted>
-                    <source src="https://tu-bucket-s3.s3.amazonaws.com/video-redes-moviles.mp4" type="video/mp4" />
-                    Tu navegador no soporta el elemento de video.
-                </video>
+            <div className="container-video">
+
+                <div className="hero-video">
+                    <video
+                        controls
+                        preload='auto'
+                        poster='/assets/poster.jpg'
+                        style={{ borderRadius: "16px", boxShadow: "0 4px 24px rgba(0,0,0,0.18)" }}
+                    >
+                        <source src="https://mi-video-telematica-2205.s3.us-east-2.amazonaws.com/video.mp4" type="video/mp4" />
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
             </div>
 
             <section className="intro-section">
@@ -117,6 +125,14 @@ export default function Home() {
                         <li>Soporte para 1 millón de dispositivos/km²</li>
                         <li>Aplicaciones: IoT masivo, realidad aumentada, vehículos autónomos</li>
                     </ul>
+                    <a
+                        href="https://ieeexplore.ieee.org/document/10336892"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="info-btn"
+                    >
+                        Más sobre 5G en IEEE
+                    </a>
                 </div>
 
                 <div className="generation-card">
@@ -128,6 +144,14 @@ export default function Home() {
                         <li>Comunicaciones holográficas</li>
                         <li>Posibles aplicaciones cuánticas</li>
                     </ul>
+                    <a
+                        href="https://ieeexplore.ieee.org/document/10963909"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="info-btn"
+                    >
+                        Más sobre 6G en IEEE
+                    </a>
                 </div>
 
                 <div className="generation-card">
@@ -139,6 +163,14 @@ export default function Home() {
                         <li>Posible teleportación de datos</li>
                         <li>Interconexión cerebral directa</li>
                     </ul>
+                    <a
+                        href="https://ieeexplore.ieee.org/document/10006659"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="info-btn"
+                    >
+                        Más sobre 7G en IEEE
+                    </a>
                 </div>
             </section>
 
