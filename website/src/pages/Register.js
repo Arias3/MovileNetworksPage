@@ -63,7 +63,7 @@ export default function Register() {
           placeholder="Usuario"
           value={username}
           onChange={e => {
-            setUsername(e.target.value);
+            setUsername(e.target.value.toLowerCase());
             setUsernameError('');
             e.target.setCustomValidity('');
           }}

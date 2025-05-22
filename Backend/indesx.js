@@ -9,6 +9,9 @@ const saltRounds = 10;
 const app = express();
 const port = 5000;
 
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET || 'secreto_super_seguro';
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -24,6 +27,8 @@ const pool = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0
 });
+
+
 
 // Ruta de Login
 app.post('/login', async (req, res) => {
@@ -41,7 +46,13 @@ app.post('/login', async (req, res) => {
     if (!match) {
       return res.status(401).json({ success: false, message: 'Usuario o contraseña incorrectos' });
     }
-    // Nunca envíes la contraseña al frontend
+
+    if (match) {
+      const token = jwt.sign({ id: user.id, username: user.user }, JWT_SECRET, { expiresIn: '2h' });
+      delete user.password; // Opcional: elimina la contraseña antes de enviar el usuario
+      return res.json({ success: true, user, token });
+    }
+
     delete user.password;
     res.json({ success: true, user });
   } catch (err) {

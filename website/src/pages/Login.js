@@ -18,8 +18,12 @@ export default function Login() {
                 body: JSON.stringify({ username, password }),
             });
             const data = await response.json();
-            if (data.success) navigate('/home');
-            else setError('Credenciales incorrectas');
+            if (data.success) {
+                localStorage.setItem('token', data.token); // Guarda el token
+                navigate('/home');
+            } else {
+                setError('Credenciales incorrectas');
+            }
         } catch (err) {
             setError('Error al conectar con el servidor');
         }
