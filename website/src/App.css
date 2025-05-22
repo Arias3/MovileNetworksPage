@@ -1,0 +1,57 @@
+/* Estilos globales (reset, fuentes, colores base) */
+:root {
+  --primary-dark: #0a192f;     /* Azul oscuro casi negro */
+  --primary-blue: #172a45;     /* Azul oscuro */
+  --accent-blue: #64ffda;      /* Azul claro/verde (acento) */
+  --text-light: #e6f1ff;       /* Texto blanco azulado */
+  --text-gray: #8892b0;        /* Texto gris */
+  --black: #000000;            /* Negro puro */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: var(--primary-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+button {
+  background-color: var(--primary-blue);
+  color: var(--text-light);
+  border: 1px solid var(--accent-blue);
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--accent-blue);
+  color: var(--primary-dark);
+}
+
+input {
+  background-color: var(--primary-blue);
+  border: 1px solid var(--text-gray);
+  color: var(--text-light);
+  padding: 10px;
+  margin: 8px 0;
+  width: 100%;
+  border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
