@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import './Register.css';
 
 export default function Register() {
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,7 +23,7 @@ export default function Register() {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/register', {
+      const response = await fetch(`${API_URL}/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),
@@ -70,7 +71,7 @@ export default function Register() {
           onBlur={async (e) => {
             if (!username) return;
             try {
-              const response = await fetch(`http://localhost:5000/check-username?username=${encodeURIComponent(username)}`);
+              const response = await fetch(`${API_URL}check-username?username=${encodeURIComponent(username)}`);
               const data = await response.json();
               if (data.exists) {
                 setUsernameError('El usuario ya está registrado');
@@ -98,7 +99,7 @@ export default function Register() {
           onBlur={async (e) => {
             if (!email) return;
             try {
-              const response = await fetch(`http://localhost:5000/check-email?email=${encodeURIComponent(email)}`);
+              const response = await fetch(`${API_URL}check-email?email=${encodeURIComponent(email)}`);
               const data = await response.json();
               if (data.exists) {
                 setEmailError('El correo ya está registrado');

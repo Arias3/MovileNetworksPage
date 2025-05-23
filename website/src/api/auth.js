@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000'; // Cambia en producción a tu dominio/API Gateway
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 export const loginUser = async (username, password) => {
   const response = await fetch(`${API_URL}/login`, {

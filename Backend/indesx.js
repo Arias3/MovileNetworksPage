@@ -1,19 +1,25 @@
 require('dotenv').config();
 const express = require('express');
+const helmet = require('helmet');
 const cors = require('cors');
 const mysql = require('mysql2/promise');
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+
 const app = express();
+
+app.use(helmet());
 const port = 5000;
 
 const jwt = require('jsonwebtoken');
 const JWT_SECRET = process.env.JWT_SECRET || 'secreto_super_seguro';
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://3.14.132.219:3000'
+}));
 app.use(express.json());
 
 // Configuración de RDS (MySQL)
@@ -56,7 +62,7 @@ app.post('/login', async (req, res) => {
     delete user.password;
     res.json({ success: true, user });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ success: false, message: 'Error interno del servidor' });
   }
 });
 
@@ -66,7 +72,7 @@ app.get('/check-username', async (req, res) => {
     const [rows] = await pool.query('SELECT id FROM users WHERE user = ?', [username]);
     res.json({ exists: rows.length > 0 });
   } catch (err) {
-    res.status(500).json({ exists: false, error: err.message });
+    res.status(500).json({ success: false, message: 'Error interno del servidor' });
   }
 });
 
@@ -76,7 +82,7 @@ app.get('/check-email', async (req, res) => {
     const [rows] = await pool.query('SELECT id FROM users WHERE mail = ?', [email]);
     res.json({ exists: rows.length > 0 });
   } catch (err) {
-    res.status(500).json({ exists: false, error: err.message });
+    res.status(500).json({ success: false, message: 'Error interno del servidor' });
   }
 });
 
@@ -124,10 +130,10 @@ app.post('/register', async (req, res) => {
       return res.status(400).json({ success: false, message });
     }
     // Otros errores
-    res.status(500).json({ success: false, message: err.message });
+    res.status(500).json({ success: false, message: 'Error interno del servidor' });
   }
 });
 
 app.listen(port, () => {
-  console.log(`API running at http://localhost:${port}`);
+  console.log(`API running at port:${port}`);
 });
