@@ -18,7 +18,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'secreto_super_seguro';
 
 // Middleware
 app.use(cors({
-  origin: 'http://3.14.132.219:3000'
+  origin: 'https://3.14.132.219:3000'
 }));
 app.use(express.json());
 
