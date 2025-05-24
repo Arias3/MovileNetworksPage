@@ -71,7 +71,7 @@ export default function Register() {
           onBlur={async (e) => {
             if (!username) return;
             try {
-              const response = await fetch(`${API_URL}check-username?username=${encodeURIComponent(username)}`);
+              const response = await fetch(`${API_URL}/check-username?username=${encodeURIComponent(username)}`);
               const data = await response.json();
               if (data.exists) {
                 setUsernameError('El usuario ya está registrado');
@@ -99,7 +99,7 @@ export default function Register() {
           onBlur={async (e) => {
             if (!email) return;
             try {
-              const response = await fetch(`${API_URL}check-email?email=${encodeURIComponent(email)}`);
+              const response = await fetch(`${API_URL}/check-email?email=${encodeURIComponent(email)}`);
               const data = await response.json();
               if (data.exists) {
                 setEmailError('El correo ya está registrado');
